@@ -9,12 +9,18 @@ Common configuration for all C172R aircraft.
 
  <sim>
   <description>Cessna 172R</description>
-  <author>Tony Peden (FDM), David Megginson (3D Models), John Check (2D Instruments)</author>
+  <author>Tony Peden (FDM), David Megginson (3D Models), John Check (2D Instruments), Alan Teeder (Datcom FDM)</author>
   <status>early-production</status>
+  
+<!-- #####################################################################################################  --> 
+<!-- to select a different FDM edit the following lines, commenting out all except the FDM that is required -->
 
   <flight-model archive="y">jsb</flight-model>
-  <aero archive="y">c172r</aero>
-
+  <!--<aero archive="y">c172r</aero> -->    <!-- original fdm -->
+  <aero archive="y">c172rDatcom</aero>
+  
+<!-- #####################################################################################################  -->
+  
   <allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>
 
   <!-- hide the 2D panel -->
