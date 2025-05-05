@@ -119,6 +119,12 @@ Common configuration for all C172R aircraft.
   <electrical>
    <file>Aircraft/c172r/c172-electrical.nas</file>
   </electrical>
+  <c172r>
+	<file>Nasal/Reset-in-air.nas</file>
+  </c172r>
+  <dialogs>
+	<file>Nasal/dialogs.nas</file>
+  </dialogs>
  </nasal>
 
 </PropertyList>
