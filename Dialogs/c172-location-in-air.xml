@@ -339,21 +339,22 @@
 			<height>25</height>
 			<property>sim/presets/flaps_deg</property>
 			<value>0</value>
+			<value>10</value>
 			<value>20</value>
-			<value>35</value>
-			<value>45</value>
+			<value>30</value>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>
-					setprop("sim/presets/flaps",getprop("sim/presets/flaps_deg")/45.0);
+					setprop("sim/presets/flaps",getprop("sim/presets/flaps_deg")/30.0);
 				</script>
 			</binding>			
 		</combo>
 
-<!--		<text>
+<!-- c172 does not have airbrakes
+		<text>
 			<row>1</row><col>4</col>
 			<label>Airbrakes:0</label>
 		</text>
@@ -379,6 +380,7 @@
 			</binding>	  
 		</checkbox>
 
+<!-- c172 does not have airbrakes retractable undercarriage
 		<checkbox>
 			<row>3</row><col>0</col>
 			<label>Gear Down</label>
@@ -394,7 +396,7 @@
 			<binding>
 				<command>dialog-apply</command>
 			</binding>	  
-		</checkbox>
+		</checkbox> -->
 
 		<checkbox>
 			<row>3</row><col>1</col>
@@ -426,7 +428,6 @@
 
 	<group>
 		<layout>table</layout>
-
 	</group>
 
 	<hrule/>

@@ -1073,11 +1073,12 @@
 			<function name="aero/coefficient/Cnda">
 				<description>aileron_yaw_moment</description>
 				<product>
-
 					<property>aero/qbar-psf</property>
 					<property>metrics/Sw-sqft</property>
 					<property>metrics/bw-ft</property>
-					<value>0.1</value>
+<!-- C172 has Frise ailerons, but Digital Datcom only has plain ailerons,
+            so reduce Datcom´s adverse yaw estimate accordingly -->
+					<value>0.1</value> 
 					<table name="aero/coefficient/Cn_aileron">
 						<independentVar lookup="column">fcs/aileron-difference-deg</independentVar>
 						<independentVar lookup="row">aero/alpha-deg</independentVar>

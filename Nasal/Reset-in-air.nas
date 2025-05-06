@@ -28,7 +28,7 @@ var step = 0;
 
 ##################################################################################
 var Reset = func{
-	print ("c172 Reset");
+	print ("signal-reinit");
     var airspeed = getprop("/sim/presets/airspeed-kt");
     var altitude = getprop("/sim/presets/altitude-ft");
 	setprop("controls/gear/nose-wheel-steering", 1);
@@ -37,23 +37,16 @@ var Reset = func{
 	var gear_down = getprop("/sim/presets/gear_down");
 	var flaps = getprop("/sim/presets/flaps") or 0;
 	
-	if (engines_running) { 
-		print ("set engine running");
+# set aircraft systems dependant on engine is set runing or not running.	
+#	if (engines_running) { 
+#		print ("set systems for engine running");
+#	}
 
-		setprop("controls/electric/engine[0]/generator", "true");
-
-	  	setprop("engines/engine[0]/running","true");
-		 
-		setprop("controls/engines/engine[0]/cutoff", "false");
-
-		setprop("controls/engines/engine[0]/started","true");
-
-	   	setprop("engines/engine[0]/starter","true");
-	}
 		
 	setprop("controls/gear/brake-parking", park_brake);      ## brakes
-    setprop("/controls/gear/gear-down", gear_down);		
-    setprop("fdm/jsbsim/gear/gear-cmd-norm", gear_down);	
+	# c172 does not have a retractable undercarriage
+    #setprop("/controls/gear/gear-down", gear_down);		
+    #setprop("fdm/jsbsim/gear/gear-cmd-norm", gear_down);	
     setprop("/controls/flight/flaps", flaps);		
     setprop("fdm/jsbsim/fcs/flaps", flaps);
     setprop("controls/flight/rudder-trim", 0);
@@ -90,15 +83,27 @@ var Reset = func{
                 break;
         }
 	}
-	print('now ready for the reset');
+	
+# set start a jet engine .
+#	if (getprop("sim/presets/engines_running")) {
+#		setprop("controls/electric/engine[0]/generator", "true");
+#	  	setprop("engines/engine[0]/running","true");
+#		setprop("controls/engines/engine[0]/cutoff", "false");
+#		setprop("controls/engines/engine[0]/started","true");
+#	   	setprop("engines/engine[0]/starter","true");
+#	}
+
+# set start a piston engine .
 		if (getprop("sim/presets/engines_running")) {
-			print("SuperMan !");
+		print("signal reinit-Start engine");
 			setprop("controls/engines/engine/magnetos", 3);
 			controls.startEngine(1);
 			} 
 		else {
-			print("Robin !");
-			}
+		print("signal reinit-Stop engine");
+		setprop("controls/engines/engine/magnetos", 0);
+		controls.startEngine(0);
+		} 
 } # end function
 ##################################################################################
 
@@ -109,16 +114,17 @@ var Reset = func{
 	
 var ResetFDM = func{
 	print ("SIGNAL /sim/signals/fdm-initialized");
-		print('fdm-initialized changed');
-		if (getprop("sim/presets/engines_running")) {
-			print("ActionMan !");
-			setprop("controls/engines/engine/magnetos", 3);
-			controls.startEngine(1);
-			} 
-		else {
-			print("Whoa, Whoa, Rodney !");
-			} 
-		};
+	if (getprop("sim/presets/engines_running")) {
+		print("signal fdm-initialized-Start engine");
+		setprop("controls/engines/engine/magnetos", 3);
+		controls.startEngine(1);
+		} 
+	else {
+		print("signal fdm-initialized-Stop engine");
+		setprop("controls/engines/engine/magnetos", 0);
+		controls.startEngine(0);
+		} 
+	};
 		
 var ResetReinit = func{
 	print ("SIGNAL /sim/signals/reinit");
