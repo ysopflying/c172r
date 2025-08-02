@@ -546,7 +546,20 @@
 					</table>
 				</product>
 			</function>
-			
+				<function name="aero/force/Drag_DATCOM correction">
+				<description>Drag additions to align different references</description>
+				<product>
+					<property>aero/qbar-psf</property>
+					<property>metrics/Sw-sqft</property>
+					<table name="aero/coefficient/CD_alpha">
+						<independentVar>aero/Re</independentVar>
+						<tableData>
+							1.83E+06	2.87E+06	3.73E+06	4.89E+06	7.46E+06
+							0.0134	0.0139	0.0139	0.0138	0.0134
+						</tableData>
+					</table>
+				</product>
+			</function>		
 			<function name="aero/force/Drag_ground_effect">
 				<description>Drag_due_ground_effect</description>
 				<product>
