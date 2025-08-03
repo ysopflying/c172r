@@ -545,6 +545,7 @@
 						</tableData>
 					</table>
 				</product>
+			</function>
 			<function name="aero/force/Drag_DATCOM correction">
 				<description>Drag additions to align different references</description>
 				<product>
